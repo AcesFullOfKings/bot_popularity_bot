@@ -1,14 +1,17 @@
 import praw
 from time import sleep
 import schedule
+import bot_data as d
 
-app_secret = ""
-app_ID = ""
-app_URI = ""
-app_user_agent = ""
-app_refresh_token = ""
+app_secret = d.app_secret
+app_ID = d.app_ID
+app_URI = d.app_URI
+app_user_agent = d.app_user_agent
+app_refresh_token = d.app_refresh_token
 
-response = "Thanks for your {feedback_type} feedback! {total_votes} {people} voted on {bot_name} so far, with {upvotes} positive votes and {downvotes} negative votes, giving {bot_name} a popularity of {popularity}%.\n\nSee the [current leaderboard here](/r/botpopularitybot/wiki/bot_popularity)."
+del(d)
+
+response = "Thanks for your {feedback_type} feedback! {total_votes} {people} voted on {bot_name} so far, with {upvotes} positive votes and {downvotes} negative votes, giving {bot_name} a popularity of {popularity}%.\n\nSee the [current leaderboard here](/r/botpopularitybot/wiki/bot_popularity). Source [here](https://github.com/Theonefoster/bot_popularity_bot/blob/master/bot_popularity_bot.py)."
 
 def login():
     print("logging in..")
@@ -35,7 +38,7 @@ def sort_bots():
     for bot in bots:
       scores.append(bot_scores[bot][1]) #get current score
 
-    while scores != []:
+    while scores != []: #simple selection sort
         lowest = 100
         index = -1 #default to last item
 
