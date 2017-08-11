@@ -1,3 +1,5 @@
+# for /u/bot_popularity_bot
+
 import praw
 from time import sleep
 import schedule
@@ -103,6 +105,7 @@ for comment in feed:
                 bot_scores[bot_name] = [0,0]
 
             bot_scores[bot_name][0] += 1
+            all_bots = list(bot_scores.keys())
 
             if body[:8] == "good bot":
                 bot_scores[bot_name][1] += 1
@@ -112,7 +115,7 @@ for comment in feed:
                 feedback_type = "negative"
 
             current_score = bot_scores[bot_name][1]
-            total_votes=bot_scores[bot_name][0]
+            total_votes = bot_scores[bot_name][0]
             upvotes = int(total_votes - ((total_votes - current_score)/2))
             downvotes = total_votes - upvotes
             popularity = round((upvotes/total_votes) * 100, 1) #in percent
