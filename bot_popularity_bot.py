@@ -103,9 +103,9 @@ for comment in feed:
 
             if bot_name not in bot_scores:
                 bot_scores[bot_name] = [0,0]
+                all_bots += bot_name
 
             bot_scores[bot_name][0] += 1
-            all_bots = list(bot_scores.keys())
 
             if body[:8] == "good bot":
                 bot_scores[bot_name][1] += 1
